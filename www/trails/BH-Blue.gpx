@@ -11,8 +11,8 @@
 </metadata>
 
 <trk>
-	<name></name>
-	<desc></desc>
+	<name>BlueTrail</name>
+	<desc>The Blue trail</desc>
 <trkseg>
 	<trkpt lat="43.18483804" lon="-73.88764746"><ele>241.2</ele><time>2022-02-05T15:16:43Z</time></trkpt>
 	<trkpt lat="43.18479341" lon="-73.88762551"><ele>244.9</ele><time>2022-02-05T15:17:49Z</time></trkpt>

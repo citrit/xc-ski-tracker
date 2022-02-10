@@ -11,8 +11,8 @@
 </metadata>
 
 <trk>
-	<name></name>
-	<desc></desc>
+	<name>YellowTrail</name>
+	<desc>The Yellow trail</desc>
 <trkseg>
 	<trkpt lat="43.18643045" lon="-73.89664408"><ele>262.1</ele><time>2022-02-05T17:32:37Z</time></trkpt>
 	<trkpt lat="43.18638888" lon="-73.89661789"><ele>262.8</ele><time>2022-02-05T17:33:23Z</time></trkpt>

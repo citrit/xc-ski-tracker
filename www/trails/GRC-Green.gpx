@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.topografix.com/GPX/1/1" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensionsv3.xsd http://www.garmin.com/xmlschemas/TrackPointExtension/v1 http://www.garmin.com/xmlschemas/TrackPointExtensionv1.xsd" xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1" xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" version="1.1" creator="https://gpx.studio">
+<metadata>
+    <name>GRC-Green</name>
+</metadata>
+<trk>
+    <name>GRC Tracks</name>
+    <desc>Tracks around my work.</desc>
+    <trkseg>
+    <trkpt lat="42.82818549805594" lon="-73.87397065758707">
+        <ele>109.9</ele>
+    </trkpt>
+    <trkpt lat="42.82818549805594" lon="-73.87397065758707">
+        <ele>109.9</ele>
+    </trkpt>
+    <trkpt lat="42.82834778525316" lon="-73.87405246496202">
+        <ele>0.0</ele>
+    </trkpt>
+    <trkpt lat="42.82844515736699" lon="-73.87398540973665">
+        <ele>0.0</ele>
+    </trkpt>
+    <trkpt lat="42.828624164287135" lon="-73.87396663427354">
+        <ele>0.0</ele>
+    </trkpt>
+    <trkpt lat="42.82878743388315" lon="-73.87386739253999">
+        <ele>0.0</ele>
+    </trkpt>
+    <trkpt lat="42.82890742692577" lon="-73.87390226125719">
+        <ele>0.0</ele>
+    </trkpt>
+    <trkpt lat="42.828978242382576" lon="-73.8739049434662">
+        <ele>0.0</ele>
+    </trkpt>
+    <trkpt lat="42.82901168298675" lon="-73.87398540973665">
+        <ele>0.0</ele>
+    </trkpt>
+    <trkpt lat="42.82907069577353" lon="-73.8739773631096">
+        <ele>0.0</ele>
+    </trkpt>
+    <trkpt lat="42.82912577432373" lon="-73.87396395206453">
+        <ele>0.0</ele>
+    </trkpt>
+    </trkseg>
+</trk>
+</gpx>

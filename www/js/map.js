@@ -12,36 +12,13 @@ const BingMapStyles = [
   'OrdnanceSurvey',
 ];
 
+const vectorLayers = [
+  
+];
 
-const style = {
-  'Point': new ol.style.Style({
-    image: new ol.style.Circle({
-      fill: new ol.style.Fill({
-        color: 'rgba(255,255,0,0.4)',
-      }),
-      radius: 5,
-      stroke: new ol.style.Stroke({
-        color: '#ff0',
-        width: 1,
-      }),
-    }),
-  }),
-  'LineString': new ol.style.Style({
-    stroke: new ol.style.Stroke({
-      color: '#f00',
-      width: 3,
-    }),
-  }),
-  'MultiLineString': new ol.style.Style({
-    stroke: new ol.style.Stroke({
-      color: '#0f0',
-      width: 3,
-    }),
-  }),
-};
-
-const layers = [
-  new ol.layer.Tile({
+const olMap = new ol.Map({
+  target: 'mapDiv',
+  layers: [ new ol.layer.Tile({
     source: new ol.source.BingMaps({
       key: 'AifZwUylySDsGAx5jp3QHunKxJ6Z0AkPa2-ZGFwb3-gtlIouPGBzI9H5DA-xUiPV',
       imagerySet: BingMapStyles[1],
@@ -49,11 +26,15 @@ const layers = [
       // "no photos at this zoom level" tiles
       // maxZoom: 19
     })
-  })
-];
+  }) ],
+  view: mapView,
+  controls: ol.control.defaults().extend([
+    new ol.control.FullScreen()
+  ])
+});
 
-['trails/BH-Blue.gpx', 'trails/BH-Green.gpx', 'trails/BH-Red.gpx', 'trails/BH-Yellow.gpx'].forEach(geoFile => {
-  const vectorLayer = new ol.layer.Vector({
+['trails/BH-Blue.gpx', 'trails/BH-Green.gpx', 'trails/BH-Red.gpx', 'trails/BH-Yellow.gpx', 'trails/GRC-Green.gpx'].forEach(geoFile => {
+  vectorLayer = new ol.layer.Vector({
     source: new ol.source.Vector({
       url: geoFile,
       format: new ol.format.GPX(),
@@ -65,20 +46,9 @@ const layers = [
       })
     })
   });
-  layers.push(vectorLayer);
+  olMap.addLayer(vectorLayer);
+  vectorLayers.push(vectorLayer);
 });
-
-
-const olMap = new ol.Map({
-  target: 'mapDiv',
-  layers: layers,
-  view: mapView,
-  controls: ol.control.defaults().extend([
-    new ol.control.FullScreen()
-  ])
-});
-
-olMap.addLayer(vectorLayer);
 
 function mapResize(evt) {
   turnLocation(true);
@@ -87,3 +57,44 @@ function mapResize(evt) {
   $("#mapDiv").height(mapRect.height - 10);
   olMap.updateSize();
 }
+
+olMap.on('singleclick', function(evt){displayFeatureInfo(evt.coordinate);});
+
+const displayFeatureInfo = function (coord) {
+
+  const feature = null;
+  const extent = new ol.extent.Extent()
+  vectorLayers.forEach(vectorSource => {
+    const boxFeatures = vectorSource
+      .getFeaturesInExtent(extent)
+      .filter((feature) => feature.getGeometry().intersectsExtent(extent));
+    if (boxFeatures)
+      feature = boxFeatures[0];
+  }
+
+  pixel = olMap.getPixelFromCoordinate(coord);
+  const feature = olMap.forEachFeatureAtPixel(pixel, function (feature) {
+    return feature;
+  },
+  {
+    hitTolerance: 10,
+  });
+
+  const info = $('#mapOverlay');
+  if (feature) {
+    info.html(`<p> Desc: ${feature.A.desc}</p>
+    <p>Length: </p>`);
+  } else {
+    info.html("<p>Not near any trails</p>");
+  }
+
+  // if (feature !== highlight) {
+  //   if (highlight) {
+  //     featureOverlay.getSource().removeFeature(highlight);
+  //   }
+  //   if (feature) {
+  //     featureOverlay.getSource().addFeature(feature);
+  //   }
+  //   highlight = feature;
+  // }
+};

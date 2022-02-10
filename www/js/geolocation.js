@@ -15,17 +15,20 @@ function turnLocation(onOff) {
 
 // update the HTML page when the position changes.
 geolocation.on('change', function () {
-    $("#infoMsg").text("Acc: " + (!!geolocation.getAccuracy() ? geolocation.getAccuracy().toFixed(1) : 0) + ' [m]' +
+    infoTxt = "Acc: " + (!!geolocation.getAccuracy() ? geolocation.getAccuracy().toFixed(1) : 0) + ' [m]' +
     "   Alt: " + (!!geolocation.getAltitude() ? geolocation.getAltitude().toFixed(1) : 0) + ' [m]' +
 //    "   Alt Accuracy: " + geolocation.getAltitudeAccuracy()?.toFixed(1) + ' [m]' +
     "   Dir: " + (!!geolocation.getHeading() ? geolocation.getHeading().toFixed(1) : 0) + ' [rad]' +
-    "   Speed: " + (!!geolocation.getSpeed() ? geolocation.getSpeed().toFixed(1) : 0) + ' [m/s]');
+    "   Speed: " + (!!geolocation.getSpeed() ? geolocation.getSpeed().toFixed(1) : 0) + ' [m/s]';
+    $("#infoMsg").text(infoTxt);
+    
     if ($("#followme").is(':checked')) {
         olMap.getView().setCenter(geolocation.getPosition());
     }
     //if (geolocation.getHeading())
     //    olMap.getView().setRotation(geolocation.get());
-    console.log("Position: " + JSON.stringify(geolocation.getPosition()));
+    displayFeatureInfo(geolocation.getPosition());
+    console.log("Position: " + JSON.stringify(geolocation.getPosition()) + " Heading: " + JSON.stringify(geolocation.getHeading()));
 });
 
 // handle geolocation error.

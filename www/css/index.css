@@ -71,6 +71,17 @@ body {
     height:100px;
   }
 
+  .ol-panel {
+    position: absolute;
+    background-color: white;
+    filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #cccccc;
+    bottom: 12px;
+    left: 0px;
+    min-width: 100px;
+}
   article {
     float: left;
     position: absolute;

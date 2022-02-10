@@ -11,8 +11,8 @@
 </metadata>
 
 <trk>
-	<name></name>
-	<desc></desc>
+	<name>RedTrail</name>
+	<desc>The Red trail</desc>
 <trkseg>
 	<trkpt lat="43.18545321" lon="-73.88811029"><ele>243.7</ele><time>2022-02-05T16:09:55Z</time></trkpt>
 	<trkpt lat="43.18548486" lon="-73.88817050"><ele>243.0</ele><time>2022-02-05T16:10:18Z</time></trkpt>
