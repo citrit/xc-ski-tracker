@@ -6,13 +6,18 @@
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
  xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
 <metadata>
-	<name>BH-Red</name>
+	<name>BH-Orange</name>
 	<desc></desc>
 </metadata>
 
 <trk>
-	<name>RedTrail</name>
-	<desc>The Red trail</desc>
+	<name>OrangeTrail</name>
+	<desc>
+	<![CDATA[
+	<strong>Orange Trail</strong><br/>
+	<strong>Dist:</strong>&nbsp; &nbsp;2.3 Km<br /><strong>Desc:</strong>&nbsp; A great trail through the golf course.
+     ]]>
+	 </desc>
 <trkseg>
 	<trkpt lat="43.18545321" lon="-73.88811029"><ele>243.7</ele><time>2022-02-05T16:09:55Z</time></trkpt>
 	<trkpt lat="43.18548486" lon="-73.88817050"><ele>243.0</ele><time>2022-02-05T16:10:18Z</time></trkpt>

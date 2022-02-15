@@ -31,17 +31,25 @@ function onDeviceReady() {
         if (screen.orientation.type === "portrait-primary") {
             $("#header").show();
             $("#mapCont").css({ top: '135px' });
-            mapResize();
         }
         else {
             $("#header").hide();
             $("#mapCont").css({ top: '50px' });
-            mapResize();
         }
-        console.log(screen.orientation.type); // e.g. portrait
+        mapResize();
+        console.log("Screen: " + screen.orientation.type); // e.g. portrait
     };
+
+    mapInit();
+    geoLocationInit();
+    mapResize();
 }
 
-function startRecording() {
-
+function toggleRecording() {
+    if ($("#trackMe").text() === "Track Me") {
+        $("#trackMe").text("Stop tracking")
+    }
+    else {
+        $("#trackMe").text("Track Me")
+    }
 }

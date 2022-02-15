@@ -1,0 +1,11 @@
+{
+    "android": {
+        "release": {
+            "keystore": "../android.keystore",
+            "storePassword": "LetMeIn2020",
+            "alias": "xcski",
+            "password" : "LetMeIn2020",
+            "keystoreType": ""
+        }
+    }
+}

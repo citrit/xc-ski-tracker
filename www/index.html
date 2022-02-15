@@ -41,21 +41,22 @@
     <title>X-Country Ski Tracker</title>
 </head>
 
-<body onresize="mapResize()" onload="mapResize()">
+<body onresize="mapResize()">
     <header id="header">
         <img src="img/logo.png" style="width: 300px;">
     </header>
 
     <section>
         <nav>
-            <button onclick="startRecording()">Track Me</button>
-            <input type="checkbox" id="followme"/>
+            <input id="followme" type="checkbox"/>
             <label for="followme">Map follows me</label>
+            <input id="trackMe" type="checkbox"/>
+            <label for="trackMe">Generate track</label>
         </nav>
 
         <article id="mapCont">
-            <div id="mapDiv" class="map"></div>
-            <div id="mapOverlay" style="z-index:9999" class="ol-panel"></div>
+            <div id="mapDiv" class="map"><div id="mapOverlay" style="z-index:1000000" class="ol-panel"></div></div>
+            
             <script src="js/map.js"></script>
             <script src="js/geolocation.js"></script>
         </article>

@@ -12,7 +12,12 @@
 
 <trk>
 	<name>GreenTrail</name>
-	<desc>The Green trail</desc>
+	<desc>
+	<![CDATA[
+	<strong>Green Trail</strong><br/>
+	<strong>Dist:</strong>&nbsp; &nbsp;1.2 Km<br /><strong>Desc:</strong>&nbsp; What a great trail through the woods.
+     ]]>
+	 </desc>
 <trkseg>
 	<trkpt lat="43.18612357" lon="-73.88968672"><ele>245.5</ele><time>2022-02-05T17:13:08Z</time></trkpt>
 	<trkpt lat="43.18617411" lon="-73.88967860"><ele>245.9</ele><time>2022-02-05T17:13:20Z</time></trkpt>
