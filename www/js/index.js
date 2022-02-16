@@ -40,6 +40,9 @@ function onDeviceReady() {
         console.log("Screen: " + screen.orientation.type); // e.g. portrait
     };
 
+    console.log(cordova.file.applicationDirectory + "www/trails/");
+    loadTracks(cordova.file.applicationDirectory + "www/trails/");
+
     mapInit();
     geoLocationInit();
     mapResize();
