@@ -41,17 +41,19 @@
     <title>X-Country Ski Tracker</title>
 </head>
 
-<body onresize="mapResize()">
-    <header id="header">
-        <img src="img/logo.png" style="width: 300px;">
-    </header>
+<body onresize="mapResize()" >
+    <div id="header">
+        <img src="img/logo.png" style="width: 250px;">
+    </div>
 
     <section>
-        <nav>
-            <input id="followme" type="checkbox"/>
-            <label for="followme">Map follows me</label>
-            <input id="trackMe" type="checkbox"/>
-            <label for="trackMe">Generate track</label>
+        <nav><!-- class="squaredFour"-->
+            <div  > 
+                <input id="followme" type="checkbox" />
+                <label for="followme">Map follows me</label>
+                <input id="trackMe" type="checkbox"/>
+                <label for="trackMe">Generate track</label>
+            </div>
         </nav>
 
         <article id="mapCont">

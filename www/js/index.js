@@ -30,11 +30,11 @@ function onDeviceReady() {
     screen.orientation.onchange = function(){
         if (screen.orientation.type === "portrait-primary") {
             $("#header").show();
-            $("#mapCont").css({ top: '135px' });
+            $("#mapCont").css({ top: '90px' });
         }
         else {
             $("#header").hide();
-            $("#mapCont").css({ top: '50px' });
+            $("#mapCont").css({ top: '40px' });
         }
         mapResize();
         console.log("Screen: " + screen.orientation.type); // e.g. portrait

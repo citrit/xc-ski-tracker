@@ -35,11 +35,6 @@ function mapInit() {
       new ol.control.FullScreen()
     ])
   });
-
-  var mapFiles = ['trails/BH-Blue.gpx', 'trails/BH-Green.gpx', 'trails/BH-Orange.gpx', 'trails/BH-Yellow.gpx',
-    'trails/GRC-Green.gpx', 'trails/House-Orange.gpx', 'trails/House-Yellow.gpx',
-    'trails/BH1-Red.gpx', 'trails/BH2-Red.gpx', 'trails/BH3-Red.gpx',
-    'trails/BH1-Magenta.gpx', 'trails/BH2-Magenta.gpx', 'trails/BH3-Magenta.gpx', 'trails/BH4-Magenta.gpx', 'trails/BH5-Magenta.gpx'];
   //var fs = require('fs');
   //var mapFiles = fs.readdirSync('trails/');
 
@@ -68,9 +63,14 @@ function mapResize(evt) {
   turnLocation(true);
   mapRect = document.getElementById('mapCont').getBoundingClientRect();
   console.log("mapCont: " + JSON.stringify(mapRect));
-  $("#mapDiv").height(mapRect.height - 10);
+  $("#mapDiv").height(mapRect.height);
   olMap.updateSize();
 }
+
+var mapFiles = ['BH-Blue.gpx', 'BH-Green.gpx', 'BH-Orange.gpx', 'BH-Yellow.gpx',
+    'GRC-Green.gpx', 'House-Orange.gpx', 'House-Yellow.gpx',
+    'BH1-Red.gpx', 'BH2-Red.gpx', 'BH3-Red.gpx',
+    'BH1-Magenta.gpx', 'BH2-Magenta.gpx', 'BH3-Magenta.gpx', 'BH4-Magenta.gpx', 'BH5-Magenta.gpx'];
 
 function loadTracks(path) {
   console.log("Listing trails: ");
@@ -80,23 +80,7 @@ function loadTracks(path) {
       reader.readEntries(
         function (entries) {
           entries.forEach(item => {
-            var lcolor = item.name.split('-')[1].split('.')[0]
-            console.log("Files: " + item.name);
-            vectorLayer = new ol.layer.Vector({
-              source: new ol.source.Vector({
-                url: "trails/" + item.name,
-                format: new ol.format.GPX(),
-              }),
-              style: new ol.style.Style({
-                stroke: new ol.style.Stroke({
-                  color: lcolor,
-                  width: 3,
-                  lineDash: (lcolor === "White" || lcolor === "Purple" ? [10, 10] : [1]) //or other combinations
-                })
-              })
-            });
-            olMap.addLayer(vectorLayer);
-            vectorLayers.push(vectorLayer);
+            loadTrack(item.name);
           });
         },
         function (err) {
@@ -104,9 +88,32 @@ function loadTracks(path) {
         }
       );
     }, function (err) {
-      console.log("FileSystem err: " +  JSON.stringify(err));
+      mapFiles.forEach(geoFile => {
+        loadTrack(geoFile);
+      });
+      //console.log("FileSystem err: " + JSON.stringify(err));
     }
   );
+
+  function loadTrack(fileName) {
+    var lcolor = fileName.split('-')[1].split('.')[0];
+    //console.log("Files: " + fileName);
+    vectorLayer = new ol.layer.Vector({
+      source: new ol.source.Vector({
+        url: "trails/" + fileName,
+        format: new ol.format.GPX(),
+      }),
+      style: new ol.style.Style({
+        stroke: new ol.style.Stroke({
+          color: lcolor,
+          width: 3,
+          lineDash: (lcolor === "White" || lcolor === "Plum" ? [7, 7] : [1]) //or other combinations
+        })
+      })
+    });
+    olMap.addLayer(vectorLayer);
+    vectorLayers.push(vectorLayer);
+  }
 }
 
 
