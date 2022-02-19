@@ -21,12 +21,22 @@
 // See https://cordova.apache.org/docs/en/latest/cordova/events/events.html#deviceready
 document.addEventListener('deviceready', onDeviceReady, false);
 
+var isRelease = false;
+
 function onDeviceReady() {
     // Cordova is now initialized. Have fun!
 
     console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
     //document.getElementById('deviceready').classList.add('ready');
     
+    cordova.plugins.IsDebug.getIsDebug(function(isDebug) {
+        console.log("Debug mode: " + isDebug);
+        isRelease = ! isDebug;
+    }, function(err) {
+        console.error("Not debug mode");
+        isRelease = true;
+    });
+
     screen.orientation.onchange = function(){
         if (screen.orientation.type === "portrait-primary") {
             $("#header").show();

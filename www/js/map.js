@@ -55,7 +55,7 @@ function mapInit() {
   //   vectorLayers.push(vectorLayer);
   // });
 
-  olMap.on('singleclick', function (evt) { displayFeatureInfo(evt.coordinate); });
+  olMap.on('singleclick', function (evt) { displayFeatureInfo(evt.coordinate, 10); });
 
 }
 
@@ -96,6 +96,9 @@ function loadTracks(path) {
   );
 
   function loadTrack(fileName) {
+    if (isRelease && (fileName.includes("House") || fileName.includes("GRC"))) {
+      return;
+    }
     var lcolor = fileName.split('-')[1].split('.')[0];
     //console.log("Files: " + fileName);
     vectorLayer = new ol.layer.Vector({
@@ -117,10 +120,10 @@ function loadTracks(path) {
 }
 
 
-const displayFeatureInfo = function (coord) {
+const displayFeatureInfo = function (coord, dist = 5) {
 
   var feature = null;
-  const extent = [coord[0] - 5, coord[1] - 5, coord[0] + 5, coord[1] + 5];
+  const extent = [coord[0] - dist, coord[1] - dist, coord[0] + dist, coord[1] + dist];
   vectorLayers.every(vectorLay => {
     const boxFeatures = vectorLay.getSource()
       .getFeaturesInExtent(extent)

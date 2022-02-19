@@ -16,20 +16,24 @@
   "devDependencies": {
     "cordova-android": "^10.1.1",
     "cordova-browser": "^6.0.0",
+    "cordova-ios": "^6.2.0",
     "cordova-plugin-file": "^6.0.2",
     "cordova-plugin-geolocation": "^4.1.0",
+    "cordova-plugin-is-debug": "^1.0.0",
     "cordova-plugin-screen-orientation": "^3.0.2",
     "es6-promise-plugin": "^4.2.2"
   },
   "cordova": {
     "platforms": [
       "browser",
-      "android"
+      "android",
+      "ios"
     ],
     "plugins": {
       "cordova-plugin-geolocation": {},
       "cordova-plugin-screen-orientation": {},
-      "cordova-plugin-file": {}
+      "cordova-plugin-file": {},
+      "cordova-plugin-is-debug": {}
     }
   }
 }
