@@ -31,18 +31,17 @@
         -->
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
-    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=contain">
     <meta name="color-scheme" content="light dark">
     <link rel="stylesheet" href="css/ol.css"/>
     <link rel="stylesheet" href="css/index.css"/>
-    <script src="js/index.js"></script>
-    <script src="js/ol.js"></script>
     <script src="js/jquery.js"></script>
+    <script src="js/ol.js"></script>
     <title>X-Country Ski Tracker</title>
 </head>
 
-<body onresize="mapResize()" >
-    <div id="header" >
+<body  >
+    <div id="header" class="header">
         <img src="img/logo.png" style="width: 250px;">
     </div>
 
@@ -53,21 +52,23 @@
                 <label for="followme">Map follows me</label>
                 <input id="trackMe" type="checkbox"/>
                 <label for="trackMe">Generate track</label>
+                <input type="button" title="PRessMe"/>
             </div>
         </nav>
 
         <article id="mapCont">
-            <div id="mapDiv" class="map"><div id="mapOverlay" style="z-index:1000000" class="ol-panel"></div></div>
-            
-            <script src="js/map.js"></script>
-            <script src="js/geolocation.js"></script>
+            <div id="mapDiv" class="map"><div id="mapOverlay" style="z-index:10000" class="ol-panel"></div></div>
         </article>
     </section>
 
     <footer>
-        <p id="infoMsg">Footer</p>
+        <p id="infoMsg">No GPS Signal</p>
     </footer>
     <script src="cordova.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/geolocation.js"></script>
+    <script src="js/index.js"></script>
+
 </body>
 
 </html>

@@ -35,27 +35,10 @@ function mapInit() {
       new ol.control.FullScreen()
     ])
   });
-  //var fs = require('fs');
-  //var mapFiles = fs.readdirSync('trails/');
 
-  // mapFiles.forEach(geoFile => {
-  //   vectorLayer = new ol.layer.Vector({
-  //     source: new ol.source.Vector({
-  //       url: geoFile,
-  //       format: new ol.format.GPX(),
-  //     }),
-  //     style: new ol.style.Style({
-  //       stroke: new ol.style.Stroke({
-  //         color: geoFile.split('-')[1].split('.')[0],
-  //         width: 3,
-  //       })
-  //     })
-  //   });
-  //   olMap.addLayer(vectorLayer);
-  //   vectorLayers.push(vectorLayer);
-  // });
-
-  olMap.on('singleclick', function (evt) { displayFeatureInfo(evt.coordinate, 10); });
+  olMap.on('singleclick', function (evt) { 
+    console.log("Picked point on map: " + JSON.stringify(evt.coordinate));
+    displayFeatureInfo(evt.coordinate, 10); });
 
 }
 
@@ -67,20 +50,23 @@ function mapResize(evt) {
   olMap.updateSize();
 }
 
-var mapFiles = ['BH-Blue.gpx', 'BH-Green.gpx', 'BH-Orange.gpx', 'BH-Yellow.gpx',
-    'GRC-Green.gpx', 'House-Orange.gpx', 'House-Yellow.gpx',
-    'BH1-Red.gpx', 'BH2-Red.gpx', 'BH3-Red.gpx',
-    'BH1-Magenta.gpx', 'BH2-Magenta.gpx', 'BH3-Magenta.gpx', 'BH4-Magenta.gpx', 'BH5-Magenta.gpx'];
+var mapFiles = [{"name":'BH-Blue.gpx'}, {"name":'BH-Green.gpx'}, {"name":'BH-Orange.gpx'}, {"name":'BH-Yellow.gpx'},
+{"name":'GRC-Green.gpx'}, {"name":'House-Orange.gpx'}, {"name":'House-Yellow.gpx'},
+{"name":'BH1-Red.gpx'}, {"name":'BH2-Red.gpx'}, {"name":'BH3-Red.gpx'},
+{"name":'BH1-Magenta.gpx'}, {"name":'BH2-Magenta.gpx'}, {"name":'BH3-Magenta.gpx'}, {"name":'BH4-Magenta.gpx'}, {"name":'BH5-Magenta.gpx'}];
 
 function loadTracks(path) {
   console.log("Listing trails: ");
   window.resolveLocalFileSystemURL(path,
     function (fileSystem) {
+      console.log("resolveLocalFileSystemURL");
       var reader = fileSystem.createReader();
       reader.readEntries(
         function (entries) {
+          console.log("readEntries");
           entries.forEach(item => {
-            loadTrack(item.name);
+            //console.log("File: " + JSON.stringify(item));
+            loadTrack(item);
           });
         },
         function (err) {
@@ -91,37 +77,39 @@ function loadTracks(path) {
       mapFiles.forEach(geoFile => {
         loadTrack(geoFile);
       });
-      //console.log("FileSystem err: " + JSON.stringify(err));
+      console.log("FileSystem err: " + JSON.stringify(err));
     }
   );
+  console.log("Loaded tracks: " + vectorLayers.length);
+}
 
-  function loadTrack(fileName) {
-    if (isRelease && (fileName.includes("House") || fileName.includes("GRC"))) {
-      return;
-    }
-    var lcolor = fileName.split('-')[1].split('.')[0];
-    //console.log("Files: " + fileName);
-    vectorLayer = new ol.layer.Vector({
-      source: new ol.source.Vector({
-        url: "trails/" + fileName,
-        format: new ol.format.GPX(),
-      }),
-      style: new ol.style.Style({
-        stroke: new ol.style.Stroke({
-          color: lcolor,
-          width: 3,
-          lineDash: (lcolor === "White" || lcolor === "Plum" ? [7, 7] : [1]) //or other combinations
-        })
-      })
-    });
-    olMap.addLayer(vectorLayer);
-    vectorLayers.push(vectorLayer);
+function loadTrack(fileName) {
+  if (isRelease && (fileName.name.includes("House") || fileName.includes("GRC"))) {
+    return;
   }
+  var layURL = fileName.fullPath; //"./trails/" + fileName.name;
+  var lcolor = fileName.name.split('-')[1].split('.')[0];
+  //console.log("loadTrack: " +fileName);
+  vectorLayer = new ol.layer.Vector({
+    source: new ol.source.Vector({
+      url: layURL,
+      format: new ol.format.GPX(),
+    }),
+    style: new ol.style.Style({
+      stroke: new ol.style.Stroke({
+        color: lcolor,
+        width: 3,
+        lineDash: (lcolor === "White" || lcolor === "Plum" ? [7, 7] : [1]) //or other combinations
+      })
+    })
+  });
+  olMap.addLayer(vectorLayer);
+  console.log("Added to map: " + JSON.stringify(fileName));
+  vectorLayers.push(vectorLayer);
 }
 
 
 const displayFeatureInfo = function (coord, dist = 5) {
-
   var feature = null;
   const extent = [coord[0] - dist, coord[1] - dist, coord[0] + dist, coord[1] + dist];
   vectorLayers.every(vectorLay => {
@@ -134,14 +122,6 @@ const displayFeatureInfo = function (coord, dist = 5) {
     }
     return true;
   });
-
-  // pixel = olMap.getPixelFromCoordinate(coord);
-  // const feature = olMap.forEachFeatureAtPixel(pixel, function (feature) {
-  //   return feature;
-  // },
-  // {
-  //   hitTolerance: 10,
-  // });
 
   const info = $('#mapOverlay');
   if (feature) {

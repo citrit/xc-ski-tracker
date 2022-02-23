@@ -14,14 +14,14 @@ const geoLocationInit = function () {
 
     // update the HTML page when the position changes.
     geolocation.on('change', function () {
-        infoTxt = "Acc: " + (!!geolocation.getAccuracy() ? geolocation.getAccuracy().toFixed(1) : 0) + ' [m]' +
-            "   Alt: " + (!!geolocation.getAltitude() ? geolocation.getAltitude().toFixed(1) : 0) + ' [m]' +
+        infoTxt = "Acc: " + (!!geolocation.getAccuracy() ? geolocation.getAccuracy().toFixed(1) : 0) + ' (m) ' +
+            "   Alt: " + (!!geolocation.getAltitude() ? geolocation.getAltitude().toFixed(1) : 0) + ' (m) ' +
             //    "   Alt Accuracy: " + geolocation.getAltitudeAccuracy()?.toFixed(1) + ' [m]' +
-            "   Dir: " + (!!geolocation.getHeading() ? geolocation.getHeading().toFixed(1) : 0) + ' [rad]' +
-            "   Speed: " + (!!geolocation.getSpeed() ? geolocation.getSpeed().toFixed(1) : 0) + ' [m/s]';
+            "   Dir: " + (!!geolocation.getHeading() ? geolocation.getHeading().toFixed(1) : 0) + ' (rad) ' +
+            "   Speed: " + (!!geolocation.getSpeed() ? geolocation.getSpeed().toFixed(1) : 0) + ' (m/s)';
         $("#infoMsg").text(infoTxt);
 
-        console.log("Position: " + JSON.stringify(geolocation.getPosition()) + " Heading: " + JSON.stringify(geolocation.getHeading()));
+        //console.log("Position: " + JSON.stringify(geolocation.getPosition()) + " Heading: " + JSON.stringify(geolocation.getHeading()));
     });
 
     // handle geolocation error.
