@@ -60,8 +60,16 @@
                 <splash src="res/screen/ios/Default-Landscape@2x~ipad.png" width="2048" height="1536"/>
                 -->
         <preference name="iosPersistentFileLocation" value="library" />
+        <preference name="iosInsecureFileModeEnabled" value="true" />
+        <preference name="AllowUntrustedCerts"  value="true" />
+        <preference name="InterceptRemoteRequests" value="all" />
+        <preference name="allowFileAccessFromFileURLs" value="true" />
+        <preference name="allowUniversalAccessFromFileURLs" value="true" />
     </platform>
     <platform name="android">
         <preference name="AndroidPersistentFileLocation" value="internal" />
+        <preference name="AndroidInsecureFileModeEnabled" value="true" />
     </platform>
+    <preference name="scheme" value="app" />
+    <preference name="hostname" value="localhost" />
 </widget>

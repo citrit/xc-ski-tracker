@@ -14,6 +14,7 @@
   "author": "Tom Citriniti",
   "license": "Apache-2.0",
   "devDependencies": {
+    "@globules-io/cordova-plugin-ios-xhr": "git+https://github.com/globules-io/cordova-plugin-ios-xhr.git",
     "cordova-android": "^10.1.1",
     "cordova-browser": "^6.0.0",
     "cordova-ios": "^6.2.0",
@@ -33,7 +34,8 @@
       "cordova-plugin-geolocation": {},
       "cordova-plugin-screen-orientation": {},
       "cordova-plugin-file": {},
-      "cordova-plugin-is-debug": {}
+      "cordova-plugin-is-debug": {},
+      "@globules-io/cordova-plugin-ios-xhr": {}
     }
   }
 }

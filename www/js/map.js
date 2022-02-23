@@ -36,9 +36,10 @@ function mapInit() {
     ])
   });
 
-  olMap.on('singleclick', function (evt) { 
+  olMap.on('singleclick', function (evt) {
     console.log("Picked point on map: " + JSON.stringify(evt.coordinate));
-    displayFeatureInfo(evt.coordinate, 10); });
+    displayFeatureInfo(evt.coordinate, 10);
+  });
 
 }
 
@@ -50,10 +51,10 @@ function mapResize(evt) {
   olMap.updateSize();
 }
 
-var mapFiles = [{"name":'BH-Blue.gpx'}, {"name":'BH-Green.gpx'}, {"name":'BH-Orange.gpx'}, {"name":'BH-Yellow.gpx'},
-{"name":'GRC-Green.gpx'}, {"name":'House-Orange.gpx'}, {"name":'House-Yellow.gpx'},
-{"name":'BH1-Red.gpx'}, {"name":'BH2-Red.gpx'}, {"name":'BH3-Red.gpx'},
-{"name":'BH1-Magenta.gpx'}, {"name":'BH2-Magenta.gpx'}, {"name":'BH3-Magenta.gpx'}, {"name":'BH4-Magenta.gpx'}, {"name":'BH5-Magenta.gpx'}];
+var mapFiles = [{ "name": 'BH-Blue.gpx' }, { "name": 'BH-Green.gpx' }, { "name": 'BH-Orange.gpx' }, { "name": 'BH-Yellow.gpx' },
+{ "name": 'GRC-Green.gpx' }, { "name": 'House-Orange.gpx' }, { "name": 'House-Yellow.gpx' },
+{ "name": 'BH1-Red.gpx' }, { "name": 'BH2-Red.gpx' }, { "name": 'BH3-Red.gpx' },
+{ "name": 'BH1-Magenta.gpx' }, { "name": 'BH2-Magenta.gpx' }, { "name": 'BH3-Magenta.gpx' }, { "name": 'BH4-Magenta.gpx' }, { "name": 'BH5-Magenta.gpx' }];
 
 function loadTracks(path) {
   console.log("Listing trails: ");
@@ -87,7 +88,7 @@ function loadTrack(fileName) {
   if (isRelease && (fileName.name.includes("House") || fileName.includes("GRC"))) {
     return;
   }
-  var layURL = fileName.fullPath; //"./trails/" + fileName.name;
+  var layURL = fileName.toURL(); //"./trails/" + fileName.name;
   var lcolor = fileName.name.split('-')[1].split('.')[0];
   //console.log("loadTrack: " +fileName);
   vectorLayer = new ol.layer.Vector({
@@ -104,7 +105,7 @@ function loadTrack(fileName) {
     })
   });
   olMap.addLayer(vectorLayer);
-  console.log("Added to map: " + JSON.stringify(fileName));
+  //console.log("Added to map: " + JSON.stringify(layURL));
   vectorLayers.push(vectorLayer);
 }
 
@@ -124,10 +125,29 @@ const displayFeatureInfo = function (coord, dist = 5) {
   });
 
   const info = $('#mapOverlay');
-  if (feature) {
-    info.html(feature.A.desc);
-  } else {
-    info.html("No trail near by.");
-  }
+  
+  hitMsg = info.html();
 
+  if (dist == 5) {
+    if (feature) {
+      hitMsg = feature.A.desc;
+    }
+    else {
+      hitMsg = "There are no trails nearby.";
+    }
+  }
+  else if (feature) {
+    $('#JPO_Content').html(feature.A.desc);
+    $('#JPO_dialog').popup('show');
+    console.log("Popup should be there");
+  }
+  info.html(hitMsg);
+};
+
+const listMapFeatures = function () {
+  console.log("Looking for features..." + vectorLayers.length);
+  vectorLayers.forEach(vectorLay => {
+    const boxFeatures = vectorLay.getSource().getFeatures();
+    console.log("Features: " + boxFeatures.length);
+  });
 };

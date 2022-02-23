@@ -33,37 +33,50 @@
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=contain">
     <meta name="color-scheme" content="light dark">
-    <link rel="stylesheet" href="css/ol.css"/>
-    <link rel="stylesheet" href="css/index.css"/>
-    <script src="js/jquery.js"></script>
-    <script src="js/ol.js"></script>
+
     <title>X-Country Ski Tracker</title>
 </head>
 
-<body  >
+<body>
     <div id="header" class="header">
         <img src="img/logo.png" style="width: 250px;">
     </div>
 
     <section>
-        <nav><!-- class="squaredFour"-->
-            <div  > 
+        <nav>
+            <div>
                 <input id="followme" type="checkbox" />
                 <label for="followme">Map follows me</label>
-                <input id="trackMe" type="checkbox"/>
+                <input id="trackMe" type="checkbox" />
                 <label for="trackMe">Generate track</label>
-                <input type="button" title="PRessMe"/>
+                <!-- <input type="button" value="PRessMe" onclick="debugStuff()"/> -->
             </div>
         </nav>
 
         <article id="mapCont">
-            <div id="mapDiv" class="map"><div id="mapOverlay" style="z-index:10000" class="ol-panel"></div></div>
+            <div id="mapDiv" class="map">
+                <div id="mapOverlay" style="z-index:10000" class="ol-panel" />
+            </div>
+
         </article>
     </section>
 
     <footer>
         <p id="infoMsg">No GPS Signal</p>
     </footer>
+
+    <!-- Add content to the popup -->
+    <div id="JPO_dialog">
+        <div id="JPO_Content"></div>
+        <br>
+        <button class="JPO_close">Close</button>
+    </div>
+
+    <link rel="stylesheet" href="css/ol.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.popupoverlay.js"></script>
+    <script src="js/ol.js"></script>
     <script src="cordova.js"></script>
     <script src="js/map.js"></script>
     <script src="js/geolocation.js"></script>

@@ -28,7 +28,7 @@ function onDeviceReady() {
 
     console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
     //document.getElementById('deviceready').classList.add('ready');
-    
+
     // cordova.plugins.IsDebug.getIsDebug(function(isDebug) {
     //     console.log("Debug mode: " + isDebug);
     //     isRelease = ! isDebug;
@@ -37,7 +37,7 @@ function onDeviceReady() {
     //     isRelease = true;
     // });
     console.log("Setting screen orientation");
-    screen.orientation.onchange = function(){
+    screen.orientation.onchange = function () {
         if (screen.orientation.type === "portrait-primary") {
             $("#header").show();
             $("#mapCont").css({ top: '85px' });
@@ -52,13 +52,25 @@ function onDeviceReady() {
 
     console.log("MapIniting.");
     mapInit();
+
     console.log("Loading trails.");
     //console.log(cordova.file.applicationDirectory + "www/trails/");
     loadTracks(cordova.file.applicationDirectory + "www/trails/");
+
     geoLocationInit();
     console.log("geoLocationInit.");
+    
     mapResize();
     console.log("mapResize.");
+
+    // Set default `pagecontainer` for all popups (optional, but recommended for screen readers and iOS*)
+    $('#JPO_dialog').popup({
+        pagecontainer: '#mapCont',
+        escape: false
+      });
+    $(".JPO_close").click(function() {
+        $('#JPO_dialog').popup('hide');
+    });
 }
 
 function toggleRecording() {
@@ -68,6 +80,10 @@ function toggleRecording() {
     else {
         $("#trackMe").text("Track Me")
     }
+}
+
+const debugStuff = function () {
+    listMapFeatures();
 }
 
 document.body.addEventListener("onresize", mapResize);
