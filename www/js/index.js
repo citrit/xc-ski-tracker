@@ -21,7 +21,7 @@
 // See https://cordova.apache.org/docs/en/latest/cordova/events/events.html#deviceready
 document.addEventListener('deviceready', onDeviceReady, false);
 
-var isRelease = false;
+let isRelease = false;
 
 function onDeviceReady() {
     // Cordova is now initialized. Have fun!
@@ -71,6 +71,8 @@ function onDeviceReady() {
     $(".JPO_close").click(function() {
         $('#JPO_dialog').popup('hide');
     });
+
+    createMeasureTooltip();
 }
 
 function toggleRecording() {

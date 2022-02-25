@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.tcc.xcskitracker" version="1.0.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.tcc.xcskitracker" version="1.0.7" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>XC-SkiTracker</name>
     <description>Track where you are when you Ski and find near by trails.</description>
     <author email="citrit2@gmail.com" href="https://www.linkedin.com/in/thomascitriniti/">
@@ -8,7 +8,7 @@
     <content src="index.html" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
-    <icon src="res/icon.png" />
+    <splash src="res/icon.png" />
     <platform name="ios">
         <edit-config target="NSLocationWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
             <string>The app needs access to your location to show where you are on the map. Please accept.</string>
@@ -67,6 +67,12 @@
         <preference name="allowUniversalAccessFromFileURLs" value="true" />
     </platform>
     <platform name="android">
+        <splash src="res/screen/android/splash-port-hdpi.png" density="port-hdpi" />
+        <splash src="res/screen/android/splash-port-ldpi.png" density="port-ldpi" />
+        <splash src="res/screen/android/splash-port-mdpi.png" density="port-mdpi" />
+        <splash src="res/screen/android/splash-port-xhdpi.png" density="port-xhdpi" />
+        <splash src="res/screen/android/splash-port-xxhdpi.png" density="port-xxhdpi" />
+        <splash src="res/screen/android/splash-port-xxxhdpi.png" density="port-xxxhdpi" /> 
         <preference name="AndroidPersistentFileLocation" value="internal" />
         <preference name="AndroidInsecureFileModeEnabled" value="true" />
     </platform>

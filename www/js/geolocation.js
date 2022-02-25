@@ -57,13 +57,14 @@ const geoLocationInit = function () {
         displayFeatureInfo(coordinate);
         positionFeature.setGeometry(coordinate ? new ol.geom.Point(coordinate) : null);
         
-        if ($("#followme").is(':checked')) {
+        if ($("#followMe").is(':checked')) {
             olMap.getView().setCenter(coordinate);
         }
         
         if ($("#trackMe").is(':checked')) {
-            console.log("Track pos: " + JSON.stringify(coordinate));
+            //console.log("Track pos: " + JSON.stringify(coordinate));
             trackFeature.getGeometry().appendCoordinate(coordinate);
+            setMeasureTooltip(trackFeature.getGeometry());
         }
         else {
             trackLayer.getSource().clear();
@@ -71,6 +72,7 @@ const geoLocationInit = function () {
                 geometry: new ol.geom.LineString([])
             });
             trackLayer.getSource().addFeature(trackFeature);
+            endTooltip();
         }
     });
 

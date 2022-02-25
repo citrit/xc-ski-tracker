@@ -1,7 +1,7 @@
 
 
-var olMap = null;
-var mapView = null;
+let olMap = null;
+let mapView = null;
 const vectorLayers = [];
 
 function mapInit() {
