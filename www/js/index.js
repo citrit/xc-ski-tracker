@@ -46,8 +46,8 @@ function onDeviceReady() {
             $("#header").hide();
             $("#mapCont").css({ top: '40px' });
         }
-        mapResize();
         console.log("Screen: " + screen.orientation.type); // e.g. portrait
+        //mapResize();
     };
 
     console.log("MapIniting.");
@@ -61,7 +61,7 @@ function onDeviceReady() {
     console.log("geoLocationInit.");
     
     mapResize();
-    console.log("mapResize.");
+    console.log("Initial mapResize.");
 
     // Set default `pagecontainer` for all popups (optional, but recommended for screen readers and iOS*)
     $('#JPO_dialog').popup({
@@ -88,4 +88,5 @@ const debugStuff = function () {
     listMapFeatures();
 }
 
-document.body.addEventListener("onresize", mapResize);
+$(window).on('resize', function() { mapResize();});
+//document.body.addEventListener("onresize", mapResize);

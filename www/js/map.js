@@ -22,6 +22,7 @@ function mapInit() {
   olMap = new ol.Map({
     target: 'mapDiv',
     layers: [new ol.layer.Tile({
+      preload: Infinity,
       source: new ol.source.BingMaps({
         key: 'AifZwUylySDsGAx5jp3QHunKxJ6Z0AkPa2-ZGFwb3-gtlIouPGBzI9H5DA-xUiPV',
         imagerySet: BingMapStyles[1],
@@ -38,16 +39,16 @@ function mapInit() {
 
   olMap.on('singleclick', function (evt) {
     console.log("Picked point on map: " + JSON.stringify(evt.coordinate));
-    displayFeatureInfo(evt.coordinate, 10);
+    displayFeatureInfo(evt.coordinate, 15);
   });
 
 }
 
 function mapResize(evt) {
   turnLocation(true);
-  mapRect = document.getElementById('mapCont').getBoundingClientRect();
-  console.log("mapCont: " + JSON.stringify(mapRect));
-  $("#mapDiv").height(mapRect.height);
+  mapRect = $("#mapCont").outerHeight(true); //document.getElementById('mapCont').getBoundingClientRect();
+  console.log(`mapHeight: ${mapRect} mapCont: ${JSON.stringify(mapRect)}`);
+  $("#mapDiv").height(mapRect);
   olMap.updateSize();
 }
 
