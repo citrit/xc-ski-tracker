@@ -37,7 +37,7 @@ function mapInit() {
     ])
   });
 
-  olMap.on('singleclick', function (evt) {
+  olMap.on('click', function (evt) {
     console.log("Picked point on map: " + JSON.stringify(evt.coordinate));
     displayFeatureInfo(evt.coordinate, 15);
   });
@@ -46,7 +46,7 @@ function mapInit() {
 
 function mapResize(evt) {
   turnLocation(true);
-  mapRect = $("#mapCont").outerHeight(true); //document.getElementById('mapCont').getBoundingClientRect();
+  mapRect = $("#mapCont").height(); //outerHeight(true); //document.getElementById('mapCont').getBoundingClientRect();
   console.log(`mapHeight: ${mapRect} mapCont: ${JSON.stringify(mapRect)}`);
   $("#mapDiv").height(mapRect);
   olMap.updateSize();

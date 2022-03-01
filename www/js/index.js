@@ -37,18 +37,19 @@ function onDeviceReady() {
     //     isRelease = true;
     // });
     console.log("Setting screen orientation");
-    screen.orientation.onchange = function () {
-        if (screen.orientation.type === "portrait-primary") {
-            $("#header").show();
-            $("#mapCont").css({ top: '85px' });
-        }
-        else {
-            $("#header").hide();
-            $("#mapCont").css({ top: '40px' });
-        }
-        console.log("Screen: " + screen.orientation.type); // e.g. portrait
-        //mapResize();
-    };
+    screen.orientation.lock('portrait');
+    // screen.orientation.onchange = function () {
+    //     if (screen.orientation.type === "portrait-primary") {
+    //         $("#header").show();
+    //         $("#mapCont").css({ top: '85px' });
+    //     }
+    //     else {
+    //         $("#header").hide();
+    //         $("#mapCont").css({ top: '30px' });
+    //     }
+    //     console.log("Screen: " + screen.orientation.type); // e.g. portrait
+    //     //mapResize();
+    // };
 
     console.log("MapIniting.");
     mapInit();
@@ -88,5 +89,5 @@ const debugStuff = function () {
     listMapFeatures();
 }
 
-$(window).on('resize', function() { mapResize();});
+window.addEventListener("resize", function() { mapResize();}, false);
 //document.body.addEventListener("onresize", mapResize);
