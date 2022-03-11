@@ -86,9 +86,9 @@ function loadTracks(path) {
 }
 
 function loadTrack(fileName) {
-  if (isRelease && (fileName.name.includes("House") || fileName.includes("GRC"))) {
-    return;
-  }
+  // if (isRelease && (fileName.name.includes("House") || fileName.includes("GRC"))) {
+  //   return;
+  // }
   var layURL = fileName.toURL(); //"./trails/" + fileName.name;
   var lcolor = fileName.name.split('-')[1].split('.')[0];
   //console.log("loadTrack: " +fileName);

@@ -29,13 +29,13 @@ function onDeviceReady() {
     console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
     //document.getElementById('deviceready').classList.add('ready');
 
-    // cordova.plugins.IsDebug.getIsDebug(function(isDebug) {
-    //     console.log("Debug mode: " + isDebug);
-    //     isRelease = ! isDebug;
-    // }, function(err) {
-    //     console.error("Not debug mode");
-    //     isRelease = true;
-    // });
+    cordova.plugins.IsDebug.getIsDebug(function(isDebug) {
+        isRelease = ! isDebug;
+        console.log("Debug mode: " + isDebug + " Relase: " + isRelease);
+    }, function(err) {
+        console.error("Not debug mode");
+        isRelease = true;
+    });
     console.log("Setting screen orientation");
     screen.orientation.lock('portrait');
     // screen.orientation.onchange = function () {
