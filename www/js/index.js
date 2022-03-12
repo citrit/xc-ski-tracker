@@ -54,7 +54,7 @@ function onDeviceReady() {
     console.log("MapIniting.");
     mapInit();
 
-    console.log("Loading trails.");
+    console.log("Loading trails: " + cordova.file.applicationDirectory + "www/trails/");
     //console.log(cordova.file.applicationDirectory + "www/trails/");
     loadTracks(cordova.file.applicationDirectory + "www/trails/");
 
@@ -74,6 +74,11 @@ function onDeviceReady() {
     });
 
     createMeasureTooltip();
+    cordova.getAppVersion.getVersionNumber(function(versionNumber){
+        // 1.0.0
+        console.log("version number", versionNumber);
+        $("#versionInfo").text("v" + versionNumber);
+    });
 }
 
 function toggleRecording() {

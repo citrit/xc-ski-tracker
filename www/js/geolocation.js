@@ -76,7 +76,7 @@ const geoLocationInit = function () {
         }
     });
 
-    var trackLayer = new ol.layer.Vector({
+    var trackPosLayer = new ol.layer.Vector({
         map: olMap,
         source: new ol.source.Vector({
             features: [accuracyFeature, positionFeature],

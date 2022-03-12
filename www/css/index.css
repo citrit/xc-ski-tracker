@@ -53,7 +53,7 @@ body {
   }
 
   /* Create two columns/boxes that floats next to each other */
-  nav {
+  .nav {
     float: left;
     width: 100%;
     background: #2196f3;
@@ -61,10 +61,11 @@ body {
     padding: 5px;
     font-size: small;
     color: white;
+    text-align: center;
   }
   
   /* Style the list inside the menu */
-  nav ul {
+  .nav ul {
     list-style-type: none;
     padding: 0;
   }
