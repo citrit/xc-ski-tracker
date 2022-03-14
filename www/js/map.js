@@ -134,7 +134,7 @@ const displayFeatureInfo = function (coord, dist = 5) {
       hitMsg = feature.A.desc;
     }
     else {
-      hitMsg = "There are no trails nearby.";
+      hitMsg = "There are no trails near you.";
     }
   }
   else if (feature) {
