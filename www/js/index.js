@@ -77,7 +77,7 @@ function onDeviceReady() {
     cordova.getAppVersion.getVersionNumber(function(versionNumber){
         // 1.0.0
         console.log("version number", versionNumber);
-        $("#versionInfo").text("v" + versionNumber);
+        //$("#versionInfo").text("v" + versionNumber);
     });
 }
 
